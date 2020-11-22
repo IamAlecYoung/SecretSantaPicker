@@ -1,0 +1,3 @@
+# SecretSantaPicker
+
+Simple Secret Santa picker, no management yet...
