@@ -18,7 +18,7 @@ session_start();
     <i><img src="./pics/emoji/santa.svg" height="64" alt="Mr Santa icon"/></i>
     <i><img src="./pics/emoji/present.svg" height="64" alt="Present icon"/></i>
     <i><img src="./pics/emoji/tree.svg" height="64" alt="Tree icon"/></i>
-    Seshmas at <strike>the Clansman</strike> home 
+    Seshmas at <strike>the Burns</strike> home
     (<i><img src="./pics/emoji/cry.svg" height="64" alt="Cry icon"/></i>)
   </h1>
   <?php
@@ -34,7 +34,7 @@ session_start();
         <i></i>
         <p>'.$_SESSION['error'].'</p>
     </div>'; 
-  session_unset('error');
+    session_unset('error');
   }
   
   ?>
@@ -49,8 +49,8 @@ session_start();
       <div class="row">
           <?php
           // Peeps who have yet to pick
-            $queryDB = $conn->query('SELECT * FROM `peeps` WHERE `picking` = 0 and `year` = (select currentyear from settings) order by rand()');        
-
+            $queryDB = $conn->query('SELECT * FROM `peeps` WHERE `picking` = 0 and `year` = (select currentyear from settings) order by rand()');
+              
                 //Echo out each individual row
               foreach ($queryDB->fetchAll() as $row) {
                 echo '

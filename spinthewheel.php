@@ -23,10 +23,10 @@ if(!isset($_SESSION['ID'])){
             <i><img src="./pics/emoji/santa.svg" height="64" alt="Mr Santa icon"/></i>
             <i><img src="./pics/emoji/present.svg" height="64" alt="Present icon"/></i>
             <i><img src="./pics/emoji/tree.svg" height="64" alt="Tree icon"/></i>
-            Seshmas at <strike>the Clansman</strike> home 
+            Seshmas at <strike>the Burns</strike> home 
             (<i><img src="./pics/emoji/cry.svg" height="64" alt="Cry icon"/></i>)
         </h1>
-        
+
         <div class="jumbotron pt-4">
             <h2 class="display-4 align-left">
                 <i><img src="./pics/emoji/thinking.svg" height="64" alt="thinking icon"/></i>
@@ -35,12 +35,12 @@ if(!isset($_SESSION['ID'])){
             <p class="lead">Decided to make it a bit different this year. Instead of being given someone, you now need to SPIN THE WHEEEL!!!!</p>
             <hr class="my-4">
             <div class="row">
-                
+
                 <div class="col-6 offset-3 text-center">
                     <div class="roulette_container mb-1" >
                         <div class="roulette" style="display:none;">
                             <?php 
-        
+
                             $WhosPicking = $_SESSION["ID"];
 
                             $getMaPeeps = $conn->prepare("SELECT * FROM `peeps` WHERE `ID` != :whoPicked and `year` = (select currentyear from settings)" );
@@ -52,7 +52,7 @@ if(!isset($_SESSION['ID'])){
                             <img src="pics/'.$row['pic'].'" alt="'.$row['name'].' Picture" title="'.$row['name'].'" class="img-fluid mx-auto d-block">
                             ';
                         }
-                        
+
                         ?>
                         </div>
                     </div>
@@ -65,18 +65,18 @@ if(!isset($_SESSION['ID'])){
                     <h2 class="d-inline-block">
                         <button class="btn btn-success start">
                             <i><img src="./pics/emoji/hope.svg" height="30" alt="hope icon"/></i>
-                            Spin 
+                            Spin
                         </button>
                         <button class="btn btn-success stop" style="display:none" disabled> 
                             <i><img src="./pics/emoji/omg.svg" height="30" alt="OMG icon"/></i>
                             Spinning...
                         </button>
-                        
+
                     </h2>
                 </div>
             </div>
         </div>
-    
+
     </div>
 
 <footer class="footer mt-auto py-3">

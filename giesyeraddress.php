@@ -24,7 +24,7 @@ if(!isset($_SESSION['ID'])){
             <i><img src="./pics/emoji/santa.svg" height="64" alt="Mr Santa icon"/></i>
             <i><img src="./pics/emoji/present.svg" height="64" alt="Present icon"/></i>
             <i><img src="./pics/emoji/tree.svg" height="64" alt="Tree icon"/></i>
-            Seshmas at <strike>the Clansman</strike> home 
+            Seshmas at <strike>the Burns</strike> home 
             (<i><img src="./pics/emoji/cry.svg" height="64" alt="Cry icon"/></i>)
         </h1>
 
@@ -89,20 +89,20 @@ if(!isset($_SESSION['ID'])){
                         </form>
                     </div>
                     <div class="col-3">
-                        <p><strong>Alec Address (--------)</strong></p>
+                        <p><strong>Alec Address (Kirkcaldy)</strong></p>
                         <p>
-                            -----,<br>
-                            -----y,<br>
-                            -----,<br>
-                            --- ---<br>
+                            *********,<br>
+                            *********,<br>
+                            *********,<br>
+                            *********<br>
                         </p>
                         <hr>
-                        <p><strong>G's Address (---------)</strong></p>
+                        <p><strong>G's Address (*********)</strong></p>
                         <p>
-                            -----,<br>
-                            -----,<br>
-                            -----,<br>
-                            --- ---<br>
+                            *********,<br>
+                            *********,<br>
+                            *********,<br>
+                            *********<br>
                         </p>
                         <hr>
                         <p class="muted"><i>(Make a note)</i></p>
@@ -135,5 +135,6 @@ if(!isset($_SESSION['ID'])){
 
     <!-- Google Analytics -->
     <script src="js/analytics.js"></script>
+
 </body>
 </html>

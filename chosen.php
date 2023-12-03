@@ -14,16 +14,9 @@ session_start();
 
     <?php
         // Simple sanity checks
-        $totalPeeps = $conn->prepare("SELECT COUNT(name) FROM `peeps`");
-        $totalPeeps->execute();
-        $row = $totalPeeps->fetch();
         if(!isset($_GET['ID'])){
             $_SESSION['error'] = "Fuck Sake Vince! (No one selected)";
             header('Location: '.$directory.'index.php');
-        }
-        if($_GET['ID'] > $row[0]){
-            $_SESSION['error'] = "Fuck Sake Vince! (That many folk arent taking part)";
-            header('Location: index.php');
         }
     ?>
 
@@ -32,7 +25,7 @@ session_start();
             <i><img src="./pics/emoji/santa.svg" height="64" alt="Mr Santa icon"/></i>
             <i><img src="./pics/emoji/present.svg" height="64" alt="Present icon"/></i>
             <i><img src="./pics/emoji/tree.svg" height="64" alt="Tree icon"/></i>
-            Seshmas at <strike>the Clansman</strike> home 
+            Seshmas at <strike>the Burns</strike> home 
             (<i><img src="./pics/emoji/cry.svg" height="64" alt="Cry icon"/></i>)
         </h1>
 

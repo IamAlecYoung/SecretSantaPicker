@@ -67,7 +67,7 @@ if($verify[0] != $passWord){
 
         //Update table that shows who has picked who
         //------------------------------------------
-            $tagaPair = $conn->prepare("INSERT INTO `whopickedwho`(`Person1`, `Person2`, `year`) VALUES (:person1,:person2, 2020)");
+            $tagaPair = $conn->prepare("INSERT INTO `whopickedwho`(`Person1`, `Person2`, `year`) VALUES (:person1,:person2, (select currentyear from settings))");
                 $tagaPair->bindParam(":person1", $WhosPicking);
                 $tagaPair->bindParam(":person2", $Person2["ID"]);
                 $tagaPair->execute();
