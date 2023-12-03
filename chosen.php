@@ -33,7 +33,7 @@ session_start();
 
             <?php
                 //Query the Database
-                $getMaPeeps = $conn->prepare("SELECT * FROM `peeps` WHERE `ID` = :id");
+                $getMaPeeps = $conn->prepare("SELECT * FROM `Peeps` WHERE `ID` = :id");
                     $getMaPeeps->bindParam(":id", $_GET['ID']);
                     $getMaPeeps->execute();
 

@@ -49,7 +49,7 @@ session_start();
       <div class="row">
           <?php
           // Peeps who have yet to pick
-            $queryDB = $conn->query('SELECT * FROM `peeps` WHERE `picking` = 0 and `year` = (select currentyear from settings) order by rand()');
+            $queryDB = $conn->query('SELECT * FROM `Peeps` WHERE `ToPick` = 0 and `year` = (select currentyear from settings) order by rand()');
               
                 //Echo out each individual row
               foreach ($queryDB->fetchAll() as $row) {
@@ -75,7 +75,7 @@ session_start();
       <div class="row">
         <?php
         // Peeps who have already picked.
-              $queryDBTwo = $conn->query('SELECT * FROM `peeps` WHERE `picking` = 1 and `year` = (select currentyear from settings) order by rand()');
+              $queryDBTwo = $conn->query('SELECT * FROM `Peeps` WHERE `ToPick` = 1 and `year` = (select currentyear from settings) order by rand()');
             //Echo out each individual row
             foreach ($queryDBTwo->fetchAll() as $row) {
 

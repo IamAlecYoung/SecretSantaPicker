@@ -8,7 +8,7 @@ $locationSet = false;
 
 //Check if they know the password
 //-------------------------------
-$getPass = $conn->prepare("SELECT `uniquePass` FROM `peeps` WHERE `ID` = :id");
+$getPass = $conn->prepare("SELECT `uniquePass` FROM `Peeps` WHERE `ID` = :id");
 $getPass->bindParam(":id", $WhosPicking);
 $getPass->execute();
 
@@ -23,16 +23,16 @@ if($verify[0] != $passWord){
 
     //Check to see if they have picked anyone before
     //----------------------------------------------
-        $checkPick = $conn->prepare("SELECT `picking` FROM `peeps` WHERE `ID` = :id");
+        $checkPick = $conn->prepare("SELECT `BeenPicked` FROM `Peeps` WHERE `ID` = :id");
         $checkPick->bindParam(":id", $WhosPicking);
         $checkPick->execute();
 
             $HavetheyPicked = $checkPick->fetch();
 
     //Check if they have picked before
-    if($HavetheyPicked['picking'] == 1){
+    if($HavetheyPicked['ToPick'] == 1){
 
-        $getRecipient = $conn->prepare("SELECT * from `peeps` WHERE `ID` = (SELECT Person2 FROM whopickedwho WHERE Person1 = :whoPicked)");
+        $getRecipient = $conn->prepare("SELECT * from `Peeps` WHERE `ID` = (SELECT Person2 FROM whopickedwho WHERE Person1 = :whoPicked)");
         $getRecipient->bindParam(":whoPicked", $WhosPicking);
         $getRecipient->execute();
 
@@ -46,7 +46,7 @@ if($verify[0] != $passWord){
     } else {
 
         //Find second person
-            $luckyContestantTwo = $conn->prepare("SELECT * FROM `peeps` WHERE `picked`= 0 and `year` = (select `currentyear` from `settings`) and ID != :personID order by rand() limit 1");
+            $luckyContestantTwo = $conn->prepare("SELECT * FROM `Peeps` WHERE `BeenPicked`= 0 and `year` = (select `currentyear` from `settings`) and ID != :personID order by rand() limit 1");
             $luckyContestantTwo->bindParam(":personID", $WhosPicking);
             $luckyContestantTwo->execute();
 
@@ -54,13 +54,13 @@ if($verify[0] != $passWord){
 
         //Person 1 has picked someone
         //---------------------------
-            $picker = $conn->prepare("UPDATE `peeps` SET `picking` = 1 WHERE `ID` = :id");
+            $picker = $conn->prepare("UPDATE `Peeps` SET `ToPick` = 1 WHERE `ID` = :id");
             $picker->bindParam(":id", $WhosPicking);
             $picker->execute();
 
         //Person 2 Has been Picked
         //---------------------------
-            $picked = $conn->prepare("UPDATE `peeps` SET `picked` = 1 WHERE `ID` = :id");
+            $picked = $conn->prepare("UPDATE `Peeps` SET `BeenPicked` = 1 WHERE `ID` = :id");
             $picked->bindParam(":id", $Person2["ID"]);
             $picked->execute();
 

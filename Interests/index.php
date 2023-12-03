@@ -59,8 +59,9 @@ if(!isset($_SESSION['ID'])){
         
         <?php
           // Peeps who have yet to pick
-          $queryDB = $conn->query('SELECT ID, name, pic From peeps where ID not in ( SELECT DISTINCT PeepID FROM Interests WHERE AddedBy = 2 and Year = (select currentyear from settings) ) AND Year = (select currentyear from settings)');
-              
+          $queryDB = $conn->prepare('SELECT ID, name, pic From Peeps where ID not in ( SELECT DISTINCT PeepID FROM interests WHERE AddedBy = :personAdding and Year = (select currentyear from settings) ) AND Year = (select currentyear from settings)');
+            $queryDB->bindParam(":personAdding", $_SESSION['ID']);
+            $queryDB->execute(); 
           //Echo out each individual row
           foreach ($queryDB->fetchAll() as $row) {
             echo '
@@ -86,7 +87,9 @@ if(!isset($_SESSION['ID'])){
 
         <?php
           // Peeps who have already picked.
-          $queryDBTwo = $conn->query('SELECT p.ID, i.PeepID, p.pic, p.name, p.year, i.Interest FROM `interests` i left join `peeps` p on i.PeepID = p.ID where i.AddedBy = 2 and p.`year` = (select currentyear from settings)');
+          $queryDBTwo = $conn->prepare('SELECT p.ID, i.PeepID, p.pic, p.name, p.year, i.Interest FROM `interests` i left join `peeps` p on i.PeepID = p.ID where i.AddedBy = :personAdding and p.`year` = (select currentyear from settings)');
+            $queryDBTwo->bindParam(":personAdding", $_SESSION['ID']);
+            $queryDBTwo->execute();
 
           //Echo out each individual row
           foreach ($queryDBTwo->fetchAll(PDO::FETCH_GROUP) as $rows) {

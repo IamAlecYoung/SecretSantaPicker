@@ -16,7 +16,7 @@ if($formConstent == "Yes")
 
     // Update persons address deets 
     //---------------------------
-        $picker = $conn->prepare("UPDATE `peeps` 
+        $picker = $conn->prepare("UPDATE `Peeps` 
                                   SET `address1` = :address1,
                                       `address2` = :address2,
                                       `address3` = :address3,
@@ -38,7 +38,7 @@ if($formConstent == "Yes")
 }
 else
 {
-    $picker = $conn->prepare("UPDATE `peeps` SET `consent` = :consent WHERE `ID` = :id");
+    $picker = $conn->prepare("UPDATE `Peeps` SET `consent` = :consent WHERE `ID` = :id");
         $picker->bindParam(":id", $WhosPicking);
         $picker->bindParam(":consent", $formConstent);
         $picker->execute();

@@ -43,7 +43,7 @@ if(!isset($_SESSION['ID'])){
 
                             $WhosPicking = $_SESSION["ID"];
 
-                            $getMaPeeps = $conn->prepare("SELECT * FROM `peeps` WHERE `ID` != :whoPicked and `year` = (select currentyear from settings)" );
+                            $getMaPeeps = $conn->prepare("SELECT * FROM `Peeps` WHERE `ID` != :whoPicked and `year` = (select currentyear from settings)" );
                             $getMaPeeps->bindParam(":whoPicked", $WhosPicking);
                             $getMaPeeps->execute();
 
@@ -99,12 +99,12 @@ if(!isset($_SESSION['ID'])){
         $WhosPicking = $_SESSION["ID"];
 
         // Same as above, just need to find pic number
-        $getMaPeeps = $conn->prepare("SELECT * FROM `peeps` WHERE `ID` != :whoPicked and `year` = (select currentyear from settings)");
+        $getMaPeeps = $conn->prepare("SELECT * FROM `Peeps` WHERE `ID` != :whoPicked and `year` = (select currentyear from settings)");
         $getMaPeeps->bindParam(":whoPicked", $WhosPicking);
         $getMaPeeps->execute();
 
         //See who the user picked
-        $getRecipient = $conn->prepare("SELECT * from `peeps` WHERE `ID` = (SELECT Person2 FROM whopickedwho WHERE Person1 = :whoPicked)");
+        $getRecipient = $conn->prepare("SELECT * from `Peeps` WHERE `ID` = (SELECT Person2 FROM whopickedwho WHERE Person1 = :whoPicked)");
             $getRecipient->bindParam(":whoPicked", $WhosPicking);
             $getRecipient->execute();
 

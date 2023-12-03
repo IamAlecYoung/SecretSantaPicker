@@ -48,7 +48,7 @@ if(!isset($_SESSION['ID'])){
                         $FuckThat = $canIsayFuckThis->fetch();
 
                 //See who the user picked
-                $getRecipient = $conn->prepare("SELECT * from `peeps` WHERE `ID` = (SELECT Person2 FROM whopickedwho WHERE Person1 = :whoPicked)");
+                $getRecipient = $conn->prepare("SELECT * from `Peeps` WHERE `ID` = (SELECT Person2 FROM whopickedwho WHERE Person1 = :whoPicked)");
                         $getRecipient->bindParam(":whoPicked", $WhosPicking);
                         $getRecipient->execute();
 

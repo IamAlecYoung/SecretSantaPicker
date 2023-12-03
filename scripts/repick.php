@@ -12,13 +12,12 @@ if(!isset($_SESSION["ID"])){
 
     //Can they repick
     //---------------------
-    $canIsayFuckThis = $conn->prepare("SELECT `WhatNo` FROM `peeps` WHERE `ID` =  :id");
+    $canIsayFuckThis = $conn->prepare("SELECT `WhatNo` FROM `Peeps` WHERE `ID` =  :id");
         $canIsayFuckThis->bindParam(":id", $WhosPicking);
         $canIsayFuckThis->execute();
             $FuckThat = $canIsayFuckThis->fetch();
 
     if($FuckThat[0] == 0){ 
-
 
         //Find out who you picked
         //-----------------------
@@ -35,18 +34,18 @@ if(!isset($_SESSION["ID"])){
                 $RemoveRow->execute();
 
         //Set Person1 Pick status to zero
-            $ChangeOne = $conn->prepare("UPDATE `peeps` SET `picking`=0 WHERE `ID` = :id");
+            $ChangeOne = $conn->prepare("UPDATE `Peeps` SET `ToPick`=0 WHERE `ID` = :id");
             $ChangeOne->bindParam(":id", $WhoPicked);
                 $ChangeOne->execute();
 
-        //Set Person2 Pick statis tp zero
-            $ChangeTwo = $conn->prepare("UPDATE `peeps` SET `picked`=0 WHERE `ID` = :id");
+        //Set Person2 Pick status to zero
+            $ChangeTwo = $conn->prepare("UPDATE `Peeps` SET `BeenPicked`=0 WHERE `ID` = :id");
             $ChangeTwo->bindParam(":id", $row[0]);
                 $ChangeTwo->execute();
 
         //Set users repick to 1
         //-----------------------
-            $UpRepick = $conn->prepare("UPDATE `peeps` SET `WhatNo` = 1 WHERE `ID` = :id");
+            $UpRepick = $conn->prepare("UPDATE `Peeps` SET `WhatNo` = 1 WHERE `ID` = :id");
                 $UpRepick->bindParam(":id", $WhoPicked);
                 $UpRepick->execute();
 
